@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>토익 단어</title>
+<style>
+:root{--bg:#f5f5f7;--card:rgba(255,255,255,.82);--text:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--accent:#007aff;--good:#28a745;--bad:#ff3b30;--shadow:0 20px 60px rgba(0,0,0,.10);--radius:28px}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Pret UI",Arial,sans-serif;background:radial-gradient(circle at top,#fff 0,#f5f5f7 48%,#e9eef8 100%);color:var(--text);min-height:100vh}.dark{--bg:#050507;--card:rgba(28,28,30,.82);--text:#f5f5f7;--muted:#a1a1a6;--line:#38383a;--shadow:0 20px 70px rgba(0,0,0,.42);background:radial-gradient(circle at top,#1c1c1e 0,#050507 60%)}.wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.brand h1{font-size:28px;margin:0;letter-spacing:-.6px}.brand p{margin:6px 0 0;color:var(--muted)}.top-actions{display:flex;gap:10px;flex-wrap:wrap}.pill,button{border:0;border-radius:999px;padding:13px 18px;background:#fff;color:var(--text);box-shadow:0 6px 18px rgba(0,0,0,.07);cursor:pointer;font-weight:700;transition:.2s}.dark .pill,.dark button{background:#242426}.pill:hover,button:hover{transform:translateY(-1px)}.primary{background:var(--accent);color:white}.danger{background:#ff453a;color:white}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{background:var(--card);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.45);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}.word{text-align:center;font-size:56px;font-weight:800;letter-spacing:-1.5px;margin:18px 0 28px}.meta{text-align:center;color:var(--muted);margin-top:-16px;margin-bottom:22px}.inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{display:block;font-size:13px;font-weight:800;color:var(--muted);margin:0 0 8px 4px}input,select,textarea{width:100%;border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--text);border-radius:18px;padding:15px 16px;font-size:16px;outline:none}.dark input,.dark select,.dark textarea{background:rgba(44,44,46,.8)}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,122,255,.13)}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.result{margin-top:20px;display:none}.result.show{display:block}.answer{background:rgba(0,122,255,.08);border:1px solid rgba(0,122,255,.15);border-radius:22px;padding:18px;line-height:1.75}.check-row{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.ok{color:var(--good);font-weight:900}.partial{color:#ff9500;font-weight:900}.no{color:var(--bad);font-weight:900}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{padding:11px 14px;background:transparent;border:1px solid var(--line);box-shadow:none}.tab.active{background:var(--text);color:var(--bg)}.panel{display:none}.panel.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:rgba(255,255,255,.58);border:1px solid var(--line);border-radius:20px;padding:16px}.dark .stat{background:rgba(44,44,46,.55)}.stat b{font-size:24px}.list{display:flex;flex-direction:column;gap:10px;max-height:460px;overflow:auto;padding-right:4px}.item{border:1px solid var(--line);border-radius:20px;padding:14px;background:rgba(255,255,255,.52)}.dark .item{background:rgba(44,44,46,.52)}.item-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.item h3{margin:0;font-size:18px}.small{font-size:13px;color:var(--muted)}.mini{padding:8px 11px;font-size:13px;box-shadow:none;border:1px solid var(--line)}.roots{display:flex;gap:8px;flex-wrap:wrap}.root-chip{box-shadow:none;border:1px solid var(--line);padding:9px 12px}.root-chip.active{background:var(--text);color:var(--bg)}.star{font-size:20px;background:transparent;box-shadow:none;padding:4px}.hidden{display:none!important}@media(max-width:860px){.grid{grid-template-columns:1fr}.word{font-size:42px}.inputs,.stats{grid-template-columns:1fr 1fr}header{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{padding:18px 12px}.card{padding:20px;border-radius:24px}.inputs,.stats{grid-template-columns:1fr}.word{font-size:36px}.buttons button{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand"><h1>토익 단어</h1><p>접두사 · 어원 · 접미사 · 뜻을 직접 입력하면서 외우기</p></div><div class="top-actions"><button id="darkBtn" class="pill">다크모드</button><button id="exportBtn" class="pill">JSON 내보내기</button><label class="pill" for="importFile">JSON 불러오기</label><input id="importFile" type="file" accept="application/json" hidden></div></header>
+<main class="grid">
+<section class="card"><div class="tabs"><button class="tab active" data-mode="all">전체 랜덤</button><button class="tab" data-mode="wrong">오답만</button><button class="tab" data-mode="fav">즐겨찾기</button></div><div class="word" id="quizWord">incredible</div><div class="meta" id="quizMeta">난이도 보통</div><div class="inputs"><div><label>접두사</label><input id="prefixInput" placeholder="예: in(아니다)"></div><div><label>어원</label><input id="rootInput" placeholder="예: cred(믿다)"></div><div><label>접미사</label><input id="suffixInput" placeholder="예: -ible(~할 수 있는)"></div><div><label>뜻</label><input id="meaningInput" placeholder="예: 믿을 수 없는, 엄청난"></div></div><div class="buttons"><button class="primary" id="checkBtn">정답 확인</button><button id="nextBtn">다음 단어</button><button id="clearBtn">입력 지우기</button><button id="favBtn">⭐</button></div><div class="result" id="resultBox"></div></section>
+<aside class="card"><div class="tabs"><button class="tab side active" data-panel="stats">통계</button><button class="tab side" data-panel="add">추가</button><button class="tab side" data-panel="book">단어장</button><button class="tab side" data-panel="roots">어원</button><button class="tab side" data-panel="prefixes">접두사</button><button class="tab side" data-panel="suffixes">접미사</button></div>
+<div id="stats" class="panel active"><div class="stats"><div class="stat"><span class="small">전체</span><br><b id="totalSolved">0</b></div><div class="stat"><span class="small">맞음</span><br><b id="correctCount">0</b></div><div class="stat"><span class="small">틀림</span><br><b id="wrongCount">0</b></div><div class="stat"><span class="small">정답률</span><br><b id="rate">0%</b></div></div><h3>최근 푼 단어</h3><div class="list" id="recentList"></div></div>
+<div id="add" class="panel"><div class="inputs"><div><label>단어</label><input id="newWord"></div><div><label>난이도</label><select id="newLevel"><option>쉬움</option><option selected>보통</option><option>어려움</option></select></div><div><label>접두사</label><input id="newPrefix"></div><div><label>어원</label><input id="newRoot"></div><div><label>접미사</label><input id="newSuffix"></div><div><label>뜻</label><input id="newMeaning"></div></div><div class="buttons"><button class="primary" id="saveWordBtn">저장</button></div></div>
+<div id="book" class="panel"><input id="searchInput" placeholder="단어, 뜻, 어원, 접두사, 접미사 검색"><p class="small" id="countText"></p><div class="list" id="wordList"></div></div>
+<div id="roots" class="panel"><p class="small">어원별 모아보기</p><div class="roots" id="rootChips"></div><div class="list" id="rootList" style="margin-top:14px"></div></div>
+<div id="prefixes" class="panel"><p class="small">접두사별 모아보기</p><div class="roots" id="prefixChips"></div><div class="list" id="prefixList" style="margin-top:14px"></div></div>
+<div id="suffixes" class="panel"><p class="small">접미사별 모아보기</p><div class="roots" id="suffixChips"></div><div class="list" id="suffixList" style="margin-top:14px"></div></div>
+</aside></main></div>
+<script>
+const DEFAULT_WORDS=[
+{word:'inspect',prefix:'in(안으로)',root:'spect(보다)',suffix:'없음',meaning:'검사하다, 점검하다',level:'보통'},
+{word:'expect',prefix:'ex(밖으로)',root:'spect(보다)',suffix:'없음',meaning:'기대하다, 예상하다',level:'쉬움'},
+{word:'suspect',prefix:'sub(아래에서)',root:'spect(보다)',suffix:'없음',meaning:'의심하다, 용의자',level:'보통'},
+{word:'inspection',prefix:'in(안으로)',root:'spect(보다)',suffix:'-ion(명사)',meaning:'검사, 점검',level:'보통'},
+{word:'visible',prefix:'없음',root:'vis(보다)',suffix:'-ible(~할 수 있는)',meaning:'보이는, 눈에 띄는',level:'쉬움'},
+{word:'visit',prefix:'없음',root:'vis(보다)',suffix:'없음',meaning:'방문하다, 방문',level:'쉬움'},
+{word:'construct',prefix:'con(함께)',root:'struct(쌓다)',suffix:'없음',meaning:'건설하다, 구성하다',level:'보통'},
+{word:'instruct',prefix:'in(안으로)',root:'struct(쌓다)',suffix:'없음',meaning:'지시하다, 가르치다',level:'보통'},
+{word:'structure',prefix:'없음',root:'struct(쌓다)',suffix:'-ure(명사)',meaning:'구조, 구조물',level:'쉬움'},
+{word:'incredible',prefix:'in(아니다)',root:'cred(믿다)',suffix:'-ible(~할 수 있는)',meaning:'믿을 수 없는, 엄청난',level:'보통'},
+{word:'admission',prefix:'ad(~로)',root:'miss(보내다)',suffix:'-ion(명사)',meaning:'입장, 입학, 인정',level:'보통'},
+{word:'permit',prefix:'per(통과하여)',root:'mit(보내다)',suffix:'없음',meaning:'허가하다, 허가증',level:'보통'},
+{word:'import',prefix:'im(안으로)',root:'port(나르다)',suffix:'없음',meaning:'수입하다, 수입',level:'쉬움'},
+{word:'export',prefix:'ex(밖으로)',root:'port(나르다)',suffix:'없음',meaning:'수출하다, 수출',level:'쉬움'},
+{word:'transport',prefix:'trans(가로질러)',root:'port(나르다)',suffix:'없음',meaning:'운송하다, 운송',level:'보통'},
+{word:'educate',prefix:'e(밖으로)',root:'duc(이끌다)',suffix:'-ate(동사)',meaning:'교육하다',level:'보통'},
+{word:'reduce',prefix:'re(뒤로)',root:'duc(이끌다)',suffix:'없음',meaning:'줄이다, 감소시키다',level:'쉬움'},
+{word:'produce',prefix:'pro(앞으로)',root:'duc(이끌다)',suffix:'없음',meaning:'생산하다, 만들어내다',level:'쉬움'},
+{word:'graph',prefix:'없음',root:'graph(쓰다)',suffix:'없음',meaning:'그래프, 도표',level:'쉬움'},
+{word:'project',prefix:'pro(앞으로)',root:'ject(던지다)',suffix:'없음',meaning:'계획, 프로젝트, 예상하다',level:'보통'},
+{word:'capable',prefix:'없음',root:'cap(잡다)',suffix:'-able(~할 수 있는)',meaning:'유능한, 할 수 있는',level:'쉬움'},
+{word:'capability',prefix:'없음',root:'cap(잡다)',suffix:'-ability(~할 수 있음)',meaning:'능력, 역량',level:'보통'},
+{word:'capacity',prefix:'없음',root:'cap(받아들이다)',suffix:'-ity(상태/명사)',meaning:'용량, 수용력',level:'보통'},
+{word:'capture',prefix:'없음',root:'capt(잡다)',suffix:'-ure(행위/결과)',meaning:'붙잡다, 포획하다, 포착하다',level:'쉬움'},
+{word:'captive',prefix:'없음',root:'capt(잡다)',suffix:'-ive(~한 성질의)',meaning:'포로, 사로잡힌',level:'보통'},
+{word:'captivity',prefix:'없음',root:'capt(잡다)',suffix:'-ive(~한)',meaning:'감금, 억류',level:'보통'},
+{word:'captivate',prefix:'없음',root:'capt(잡다)',suffix:'-ate(~하게 하다)',meaning:'매혹하다, 사로잡다',level:'어려움'},
+{word:'anticipate',prefix:'ante/anti(미리, 앞에)',root:'cip(잡다)',suffix:'-ate(~하게 하다)',meaning:'예상하다',level:'보통'},
+{word:'anticipation',prefix:'ante/anti(미리, 앞에)',root:'cip(잡다)',suffix:'-ation(행위, 과정)',meaning:'예상, 기대',level:'보통'},
+{word:'unanticipated',prefix:'un(아니다)',root:'anticip(미리 잡다)',suffix:'-ated(~된)',meaning:'예상하지 못한',level:'어려움'},
+{word:'participate',prefix:'part(부분)',root:'cip(잡다)',suffix:'-ate(~하게 하다)',meaning:'참여하다, 참가하다',level:'보통'},
+{word:'participant',prefix:'part(부분)',root:'cip(잡다)',suffix:'-ant(~하는 사람)',meaning:'참가자',level:'보통'},
+{word:'participation',prefix:'part(부분)',root:'cip(잡다)',suffix:'-ation(행위, 과정)',meaning:'참여, 참가',level:'보통'},
+{word:'principal',prefix:'prin(첫째)',root:'cip(잡다)',suffix:'-al(~의)',meaning:'주요한, 교장, 원금',level:'보통'},
+{word:'principle',prefix:'prin(첫째)',root:'cip(잡다)',suffix:'-le(명사형)',meaning:'원칙, 원리',level:'보통'},
+{word:'municipal',prefix:'muni(공공의)',root:'cip(잡다)',suffix:'-al(~의)',meaning:'지방 자치의, 시의',level:'어려움'},
+{word:'proceed',prefix:'pro(앞으로)',root:'ceed/cess(가다)',suffix:'없음',meaning:'진행하다, 계속하다',level:'보통'},
+{word:'process',prefix:'pro(앞으로)',root:'cess(가다)',suffix:'없음',meaning:'과정, 처리하다',level:'쉬움'},
+{word:'access',prefix:'ac(~로)',root:'cess(가다)',suffix:'없음',meaning:'접근, 이용 권한',level:'보통'},
+{word:'recess',prefix:'re(뒤로)',root:'cess(가다)',suffix:'없음',meaning:'휴식, 휴회',level:'어려움'},
+{word:'excess',prefix:'ex(밖으로)',root:'cess(가다)',suffix:'없음',meaning:'초과, 과도한',level:'보통'},
+{word:'success',prefix:'suc(아래로/뒤따라)',root:'cess(가다)',suffix:'없음',meaning:'성공',level:'쉬움'},
+{word:'successful',prefix:'suc(아래로/뒤따라)',root:'cess(가다)',suffix:'-ful(~이 가득한)',meaning:'성공적인',level:'쉬움'},
+{word:'education',prefix:'e(밖으로)',root:'duc(이끌다)',suffix:'-ation(명사)',meaning:'교육',level:'쉬움'},
+{word:'educational',prefix:'e(밖으로)',root:'duc(이끌다)',suffix:'-ational(~의)',meaning:'교육의, 교육적인',level:'보통'},
+{word:'introduce',prefix:'intro(안으로)',root:'duc(이끌다)',suffix:'없음',meaning:'소개하다, 도입하다',level:'쉬움'},
+{word:'deduct',prefix:'de(아래로/떼어)',root:'duct(이끌다)',suffix:'없음',meaning:'공제하다, 빼다',level:'어려움'},
+{word:'conduct',prefix:'con(함께)',root:'duct(이끌다)',suffix:'없음',meaning:'수행하다, 행동, 지휘하다',level:'보통'},
+{word:'product',prefix:'pro(앞으로)',root:'duct(이끌다)',suffix:'없음',meaning:'제품, 산물',level:'쉬움'},
+{word:'productive',prefix:'pro(앞으로)',root:'duct(이끌다)',suffix:'-ive(~하는 성질의)',meaning:'생산적인',level:'보통'},
+{word:'fact',prefix:'없음',root:'fact(만들다/하다)',suffix:'없음',meaning:'사실',level:'쉬움'},
+{word:'factory',prefix:'없음',root:'fact(만들다)',suffix:'-ory(장소)',meaning:'공장',level:'쉬움'},
+{word:'manufacture',prefix:'manu(손)',root:'fact(만들다)',suffix:'-ure(행위/결과)',meaning:'제조하다, 제조',level:'보통'},
+{word:'manufacturer',prefix:'manu(손)',root:'fact(만들다)',suffix:'-er(~하는 사람/것)',meaning:'제조업자, 제조사',level:'보통'},
+{word:'factor',prefix:'없음',root:'fact(만들다)',suffix:'-or(~하는 것)',meaning:'요인, 요소',level:'보통'},
+{word:'factual',prefix:'없음',root:'fact(사실)',suffix:'-ual(~의)',meaning:'사실에 근거한',level:'어려움'},
+{word:'facsimile',prefix:'없음',root:'fac(만들다)',suffix:'simile(비슷한 것)',meaning:'복사, 팩스',level:'어려움'},
+{word:'graphic',prefix:'없음',root:'graph(쓰다/그리다)',suffix:'-ic(~의)',meaning:'시각적인, 그래픽의',level:'보통'},
+{word:'photograph',prefix:'photo(빛)',root:'graph(쓰다/그리다)',suffix:'없음',meaning:'사진',level:'쉬움'},
+{word:'photography',prefix:'photo(빛)',root:'graph(쓰다/그리다)',suffix:'-y(명사)',meaning:'사진술, 사진 촬영',level:'보통'},
+{word:'photographic',prefix:'photo(빛)',root:'graph(쓰다/그리다)',suffix:'-ic(~의)',meaning:'사진의',level:'보통'},
+{word:'telegram',prefix:'tele(멀리)',root:'gram(쓰인 것)',suffix:'없음',meaning:'전보, 전신 메시지',level:'어려움'},
+{word:'reject',prefix:'re(뒤로)',root:'ject(던지다)',suffix:'없음',meaning:'거절하다, 거부하다',level:'보통'},
+{word:'subject',prefix:'sub(아래에)',root:'ject(던지다)',suffix:'없음',meaning:'주제, 과목, 대상',level:'보통'},
+{word:'object',prefix:'ob(앞에/반대하여)',root:'ject(던지다)',suffix:'없음',meaning:'물건, 목적, 반대하다',level:'보통'},
+{word:'inject',prefix:'in(안으로)',root:'ject(던지다)',suffix:'없음',meaning:'주입하다, 주사하다',level:'보통'},
+{word:'trajectory',prefix:'tra/trans(가로질러)',root:'ject(던지다)',suffix:'-ory(명사)',meaning:'궤도, 탄도',level:'어려움'}
+];
+class Store{static get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}}static set(k,v){localStorage.setItem(k,JSON.stringify(v))}}
+class App{constructor(){this.words=Store.get('words',DEFAULT_WORDS.map((w,i)=>({...w,id:crypto.randomUUID?.()||String(Date.now()+i),createdAt:new Date().toLocaleDateString('ko-KR'),favorite:false})));this.stats=Store.get('stats',{total:0,correct:0,wrong:0,recent:[],wrongIds:[],correctIds:[]});this.mode='all';this.current=null;this.bind();this.applyTheme();this.next();this.renderAll()}bind(){document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active');this.mode=b.dataset.mode;this.next()});document.querySelectorAll('.side').forEach(b=>b.onclick=()=>{document.querySelectorAll('.side').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.panel).classList.add('active');this.renderAll()});checkBtn.onclick=()=>this.check();nextBtn.onclick=()=>this.next();clearBtn.onclick=()=>this.clear();favBtn.onclick=()=>this.toggleFav();saveWordBtn.onclick=()=>this.addWord();searchInput.oninput=()=>this.renderWords();darkBtn.onclick=()=>this.toggleDark();exportBtn.onclick=()=>this.exportJson();importFile.onchange=e=>this.importJson(e);}
+pool(){let p=this.words;if(this.mode==='wrong')p=this.words.filter(w=>this.stats.wrongIds.includes(w.id));if(this.mode==='fav')p=this.words.filter(w=>w.favorite);return p.length?p:this.words}next(){const p=this.pool();this.current=p[Math.floor(Math.random()*p.length)];quizWord.textContent=this.current.word;quizMeta.textContent=`난이도 ${this.current.level||'보통'}`;favBtn.textContent=this.current.favorite?'⭐ 즐겨찾기':'☆ 즐겨찾기';this.clear();}
+clear(){['prefixInput','rootInput','suffixInput','meaningInput'].forEach(id=>document.getElementById(id).value='');resultBox.classList.remove('show');resultBox.innerHTML=''}norm(s){return String(s||'').toLowerCase().replace(/[-\s()~,.]/g,'')}grade(input,ans){
+const ni=this.norm(input),na=this.norm(ans);
+if(na==='없음')return (!ni||ni==='없음')?'ok':'no';
+if(!ni)return 'no';
+if(na.includes(ni)||ni.includes(na))return 'ok';
+const answerParts=String(ans||'').split(/[,，\/]| 또는 | 혹은 | 및 |·/).map(x=>this.norm(x)).filter(Boolean);
+const inputParts=String(input||'').split(/[,，\/]| 또는 | 혹은 | 및 |·/).map(x=>this.norm(x)).filter(Boolean);
+let hit=0;
+answerParts.forEach(a=>{if(inputParts.some(i=>a.includes(i)||i.includes(a)))hit++});
+if(hit===0)return 'no';
+if(hit>=answerParts.length&&answerParts.length>0)return 'ok';
+return 'partial'
+}
+ok(input,ans){return this.grade(input,ans)==='ok'}
+check(){const c=this.current;const rows=[['접두사',prefixInput.value,c.prefix],['어원',rootInput.value,c.root],['접미사',suffixInput.value,c.suffix],['뜻',meaningInput.value,c.meaning]];const all=rows.every(r=>this.ok(r[1],r[2]));this.stats.total++;all?this.stats.correct++:this.stats.wrong++;this.stats.recent.unshift({word:c.word,ok:all,date:new Date().toLocaleString('ko-KR')});this.stats.recent=this.stats.recent.slice(0,8);if(all){if(!this.stats.correctIds.includes(c.id))this.stats.correctIds.push(c.id);this.stats.wrongIds=this.stats.wrongIds.filter(id=>id!==c.id)}else{if(!this.stats.wrongIds.includes(c.id))this.stats.wrongIds.push(c.id)}Store.set('stats',this.stats);resultBox.innerHTML=`<div class="answer">${rows.map(r=>`<div class="check-row"><b>${r[0]}</b><span>${this.grade(r[1],r[2])==='ok'?'<span class="ok">✅ 맞음</span>':this.grade(r[1],r[2])==='partial'?'<span class="partial">🔺 더 외워야 함</span>':'<span class="no">❌ 틀림</span>'} &nbsp; 정답: ${r[2]}</span></div>`).join('')}<p><b>${c.word}</b> = ${c.prefix} + ${c.root} + ${c.suffix}</p><p>→ ${c.meaning}</p></div>`;resultBox.classList.add('show');this.renderStats();}
+toggleFav(){this.current.favorite=!this.current.favorite;this.save();favBtn.textContent=this.current.favorite?'⭐ 즐겨찾기':'☆ 즐겨찾기';this.renderWords()}addWord(){if(!newWord.value.trim())return alert('단어를 입력해줘');this.words.unshift({id:crypto.randomUUID?.()||String(Date.now()),word:newWord.value.trim(),prefix:newPrefix.value.trim()||'없음',root:newRoot.value.trim()||'없음',suffix:newSuffix.value.trim()||'없음',meaning:newMeaning.value.trim(),level:newLevel.value,createdAt:new Date().toLocaleDateString('ko-KR'),favorite:false});this.save();['newWord','newPrefix','newRoot','newSuffix','newMeaning'].forEach(id=>document.getElementById(id).value='');this.renderAll();alert('저장됨')}save(){Store.set('words',this.words)}renderAll(){this.renderStats();this.renderWords();this.renderRoots();this.renderPrefixes();this.renderSuffixes()}renderStats(){totalSolved.textContent=this.stats.total;correctCount.textContent=this.stats.correct;wrongCount.textContent=this.stats.wrong;rate.textContent=this.stats.total?Math.round(this.stats.correct/this.stats.total*100)+'%':'0%';recentList.innerHTML=this.stats.recent.map(r=>`<div class="item"><b>${r.ok?'✅':'❌'} ${r.word}</b><div class="small">${r.date}</div></div>`).join('')||'<p class="small">아직 푼 단어 없음</p>'}
+renderWords(list=this.words){const q=(searchInput?.value||'').toLowerCase();const arr=list.filter(w=>[w.word,w.meaning,w.root,w.prefix,w.suffix].join(' ').toLowerCase().includes(q));countText.textContent=`총 ${this.words.length}개 / 검색 결과 ${arr.length}개`;wordList.innerHTML=arr.map(w=>`<div class="item"><div class="item-head"><h3>${w.favorite?'⭐ ':''}${w.word}</h3><button class="mini danger" onclick="app.del('${w.id}')">삭제</button></div><div class="small">${w.prefix} · ${w.root} · ${w.suffix}</div><p>${w.meaning}</p><div class="small">난이도 ${w.level||'보통'} · 추가 ${w.createdAt||'-'}</div></div>`).join('')||'<p class="small">검색 결과 없음</p>'}
+del(id){if(!confirm('삭제할까?'))return;this.words=this.words.filter(w=>w.id!==id);this.save();this.renderAll();this.next()}cleanPart(v){return String(v||'없음').split('(')[0].replace(/[~]/g,'').trim()||'없음'}
+countBy(field){const map={};this.words.forEach(w=>{const key=this.cleanPart(w[field]);if(key==='없음')return;map[key]=(map[key]||0)+1});return Object.entries(map).sort((a,b)=>a[0].localeCompare(b[0]))}
+renderCategory(chipId,field,handler){const data=this.countBy(field);document.getElementById(chipId).innerHTML=data.map(([v,c])=>`<button class="root-chip" onclick="app.${handler}('${v.replace(/'/g,"\\'")}')">${v} <span class="small">(${c})</span></button>`).join('')||'<p class="small">분류할 항목 없음</p>'}
+renderCategoryList(listId,field,value){const arr=this.words.filter(w=>this.cleanPart(w[field])===value);document.getElementById(listId).innerHTML=arr.map(w=>`<div class="item"><div class="item-head"><h3>${w.word}</h3><span class="small">${w.level||'보통'}</span></div><div class="small">${w.prefix} · ${w.root} · ${w.suffix}</div><p>${w.meaning}</p></div>`).join('')||'<p class="small">해당 단어 없음</p>'}
+renderRoots(){this.renderCategory('rootChips','root','showRoot')}
+showRoot(v){this.renderCategoryList('rootList','root',v)}
+renderPrefixes(){this.renderCategory('prefixChips','prefix','showPrefix')}
+showPrefix(v){this.renderCategoryList('prefixList','prefix',v)}
+renderSuffixes(){this.renderCategory('suffixChips','suffix','showSuffix')}
+showSuffix(v){this.renderCategoryList('suffixList','suffix',v)}
+toggleDark(){document.body.classList.toggle('dark');Store.set('dark',document.body.classList.contains('dark'))}applyTheme(){if(Store.get('dark',false))document.body.classList.add('dark')}exportJson(){const blob=new Blob([JSON.stringify({words:this.words,stats:this.stats},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='toeic-etymology-backup.json';a.click()}importJson(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.words){this.words=data.words;this.stats=data.stats||this.stats;this.save();Store.set('stats',this.stats);this.renderAll();this.next();alert('불러오기 완료')}}catch{alert('JSON 파일이 이상해')}};r.readAsText(f)}}
+const app=new App();
+</script>
+</body>
+</html>

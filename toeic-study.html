@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>토익 공부하기</title>
+<link rel="stylesheet" href="toeic-study.css" />
+</head>
+<body>
+<div class="study-wrap">
+  <header class="study-header">
+    <div>
+      <span class="badge">PDF 기반 공부</span>
+      <h1>토익 문법 공부하기</h1>
+      <p>PDF 내용을 교재처럼 읽고, 필요할 때만 그림을 펼쳐 보는 공간</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="side-card">
+      <button class="accordion-title open" id="materialToggle" type="button" aria-expanded="true">
+        <span class="chev">⌄</span><span>자료 목록</span>
+      </button>
+      <div id="materialPanel" class="accordion-panel"></div>
+      <p class="side-note">PDF를 누르면 해당 자료의 모든 공부 내용이 아래에 펼쳐져.</p>
+    </aside>
+
+    <section class="content-card">
+      <div class="pdf-top">
+        <span id="pdfBadge" class="badge">PDF 1탄</span>
+        <h2 id="pdfTitle">토익 Part5 기초문법 개념자료 1탄</h2>
+        <p id="pdfDesc">선택한 PDF의 전체 챕터를 한 번에 공부하는 화면</p>
+      </div>
+
+      <div id="chapterStack" class="chapter-stack"></div>
+    </section>
+  </main>
+</div>
+
+<script src="toeic-study-data.js"></script>
+<script src="toeic-study.js"></script>
+</body>
+</html>
