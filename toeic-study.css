@@ -4,6 +4,10 @@
 
 .primary{background:var(--accent);color:#fff}
 
+.auth-box{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;gap:10px;align-items:center;max-width:620px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.08)}.auth-box input{min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--text);font:inherit;outline:none}.auth-box input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,122,255,.12)}.auth-box p{grid-column:1/-1;margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+@media(max-width:860px){.auth-box{width:100%;margin-top:16px}}
+@media(max-width:520px){.auth-box{grid-template-columns:1fr}.auth-box input,.auth-box button{width:100%}.auth-box p{grid-column:auto}}
+
 /* v2.0: 사용자가 입력한 Enter/빈 줄을 그대로 표시 */
 .study-section p,
 .study-section li,
