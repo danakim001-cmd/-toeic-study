@@ -19,6 +19,56 @@ const pdfTitle = document.getElementById('pdfTitle');
 const pdfDesc = document.getElementById('pdfDesc');
 const chapterStack = document.getElementById('chapterStack');
 
+const authEmail = document.getElementById('authEmail');
+const loginButton = document.getElementById('loginButton');
+const logoutButton = document.getElementById('logoutButton');
+const authStatus = document.getElementById('authStatus');
+
+function updateAuthUI(session){
+  const email = session?.user?.email;
+  const isLoggedIn = Boolean(email);
+  authEmail.hidden = isLoggedIn;
+  loginButton.hidden = isLoggedIn;
+  logoutButton.hidden = !isLoggedIn;
+  authStatus.textContent = isLoggedIn
+    ? `${email} 계정으로 로그인됨`
+    : '로그인하면 여러 기기에서 수정 내용이 동기화됩니다.';
+}
+
+loginButton.addEventListener('click', async () => {
+  const email = authEmail.value.trim();
+  if (!email) {
+    authStatus.textContent = '이메일 주소를 먼저 입력해줘.';
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.href }
+  });
+
+  authStatus.textContent = error
+    ? `로그인 링크 전송 실패: ${error.message}`
+    : '이메일로 로그인 링크를 보냈어. 메일함을 확인해줘.';
+});
+
+logoutButton.addEventListener('click', async () => {
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) authStatus.textContent = `로그아웃 실패: ${error.message}`;
+});
+
+supabaseClient.auth.getSession().then(({ data, error }) => {
+  if (error) {
+    authStatus.textContent = `로그인 상태 확인 실패: ${error.message}`;
+    return;
+  }
+  updateAuthUI(data.session);
+});
+
+supabaseClient.auth.onAuthStateChange((_event, session) => {
+  updateAuthUI(session);
+});
+
 function save(){
   localStorage.setItem('toeicStudyPdfIndex', currentPdfIndex);
   localStorage.setItem(openChaptersKey, JSON.stringify(openChapters));
