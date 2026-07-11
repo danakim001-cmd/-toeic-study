@@ -1,11 +1,3 @@
-const SUPABASE_URL = 'https://jacpijzhkfuotgifmbqs.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_9ENUp7mPzRX_CSQarEaKLA_WG4bP44J';
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-console.log('Supabase 연결 객체 생성 완료', supabaseClient);
-
 let currentPdfIndex = Number(localStorage.getItem('toeicStudyPdfIndex') || 0);
 const openChaptersKey = 'toeicStudyOpenChapters';
 let openChapters = JSON.parse(localStorage.getItem(openChaptersKey) || '{}');
@@ -18,56 +10,6 @@ const pdfBadge = document.getElementById('pdfBadge');
 const pdfTitle = document.getElementById('pdfTitle');
 const pdfDesc = document.getElementById('pdfDesc');
 const chapterStack = document.getElementById('chapterStack');
-
-const authEmail = document.getElementById('authEmail');
-const loginButton = document.getElementById('loginButton');
-const logoutButton = document.getElementById('logoutButton');
-const authStatus = document.getElementById('authStatus');
-
-function updateAuthUI(session){
-  const email = session?.user?.email;
-  const isLoggedIn = Boolean(email);
-  authEmail.hidden = isLoggedIn;
-  loginButton.hidden = isLoggedIn;
-  logoutButton.hidden = !isLoggedIn;
-  authStatus.textContent = isLoggedIn
-    ? `${email} 계정으로 로그인됨`
-    : '로그인하면 여러 기기에서 수정 내용이 동기화됩니다.';
-}
-
-loginButton.addEventListener('click', async () => {
-  const email = authEmail.value.trim();
-  if (!email) {
-    authStatus.textContent = '이메일 주소를 먼저 입력해줘.';
-    return;
-  }
-
-  const { error } = await supabaseClient.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.href }
-  });
-
-  authStatus.textContent = error
-    ? `로그인 링크 전송 실패: ${error.message}`
-    : '이메일로 로그인 링크를 보냈어. 메일함을 확인해줘.';
-});
-
-logoutButton.addEventListener('click', async () => {
-  const { error } = await supabaseClient.auth.signOut();
-  if (error) authStatus.textContent = `로그아웃 실패: ${error.message}`;
-});
-
-supabaseClient.auth.getSession().then(({ data, error }) => {
-  if (error) {
-    authStatus.textContent = `로그인 상태 확인 실패: ${error.message}`;
-    return;
-  }
-  updateAuthUI(data.session);
-});
-
-supabaseClient.auth.onAuthStateChange((_event, session) => {
-  updateAuthUI(session);
-});
 
 function save(){
   localStorage.setItem('toeicStudyPdfIndex', currentPdfIndex);
@@ -122,6 +64,28 @@ function addEditItem(id, kind){
   div.innerHTML = `<textarea class="edit-field" data-kind="${kind}" placeholder="내용 입력"></textarea><button class="mini-delete-btn" type="button" onclick="this.parentElement.remove()">삭제</button>`;
   box.appendChild(div);
 }
+async function saveEditToSupabase(pageId, editData){
+  try {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if(userError) throw userError;
+    if(!user) return;
+
+    const { error } = await supabaseClient
+      .from('study_pages')
+      .upsert({
+        user_id: user.id,
+        page_id: pageId,
+        core: editData.core,
+        examples: editData.examples,
+        mistakes: editData.mistakes,
+        tip: editData.tip
+      }, { onConflict: 'user_id,page_id' });
+
+    if(error) console.error(error);
+  } catch(error) {
+    console.error(error);
+  }
+}
 function saveEdit(id){
   const card = document.getElementById(`chapter_${id}`);
   if(!card) return;
@@ -132,14 +96,31 @@ function saveEdit(id){
   pageEdits[id] = {core, examples, mistakes, tip};
   editingChapterId = null;
   save();
+  saveEditToSupabase(id, pageEdits[id]);
   renderChapters();
 }
-function resetEdit(id){
+async function resetEdit(id){
   if(!confirm('이 페이지에서 직접 수정한 내용을 원래대로 돌릴까?')) return;
   delete pageEdits[id];
   editingChapterId = null;
   save();
   renderChapters();
+
+  try {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if(userError) throw userError;
+    if(!user) return;
+
+    const { error } = await supabaseClient
+      .from('study_pages')
+      .delete()
+      .eq('user_id', user.id)
+      .eq('page_id', id);
+
+    if(error) console.error(error);
+  } catch(error) {
+    console.error(error);
+  }
 }
 
 function openPdf(index){
