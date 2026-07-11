@@ -1,11 +1,3 @@
-const SUPABASE_URL = 'https://jacpijzhkfuotgifmbqs.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_9ENUp7mPzRX_CSQarEaKLA_WG4bP44J';
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-console.log('Supabase 연결 객체 생성 완료', supabaseClient);
-
 let currentPdfIndex = Number(localStorage.getItem('toeicStudyPdfIndex') || 0);
 const openChaptersKey = 'toeicStudyOpenChapters';
 let openChapters = JSON.parse(localStorage.getItem(openChaptersKey) || '{}');
